@@ -4,7 +4,7 @@
 # Author: kastmada
 #-------------------------------------------------------------------------------
 # This script will install Odoo on your Ubuntu 20.04 server. It can install multiple Odoo instances
-# in one Ubuntu because of the different xmlrpc_ports and separate NGIX config files
+# in one Ubuntu because of the different xmlrpc_ports and separate NGINX config files
 #-------------------------------------------------------------------------------
 # Make a new file:
 # sudo nano odoo-install.sh
@@ -41,7 +41,7 @@ LONGPOLLING_PORT="8072"
 # Set to "True" to install certbot and have ssl enabled, "False" to use http
 ENABLE_SSL="True"
 # Provide Email to register ssl certificate
-ADMIN_EMAIL="odoo@example.com"
+ADMIN_EMAIL="contact@your.domain"
 ##
 ###  WKHTMLTOPDF download links
 ## === Ubuntu Trusty x64 & x32 === (for other distributions please replace these two links,
