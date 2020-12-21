@@ -378,6 +378,6 @@ echo "Start Odoo service: sudo service $OE_CONFIG start"
 echo "Stop Odoo service: sudo service $OE_CONFIG stop"
 echo "Restart Odoo service: sudo service $OE_CONFIG restart"
 if [ $INSTALL_NGINX = "True" ]; then
-  echo "Nginx configuration file: /etc/nginx/sites-available/odoo"
+  echo "Nginx configuration file: /etc/nginx/sites-available/${OE_USER}.conf"
 fi
 echo "-----------------------------------------------------------"
