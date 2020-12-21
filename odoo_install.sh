@@ -4,7 +4,7 @@
 # Author: kastmada
 #-------------------------------------------------------------------------------
 # This script will install Odoo on your Ubuntu 20.04 server. It can install multiple Odoo instances
-# in one Ubuntu because of the different xmlrpc_ports
+# in one Ubuntu because of the different xmlrpc_ports and separate NGIX config files
 #-------------------------------------------------------------------------------
 # Make a new file:
 # sudo nano odoo-install.sh
@@ -55,7 +55,7 @@ WKHTMLTOX_X32=https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.
 # Update Server
 #--------------------------------------------------
 echo -e "\n---- Update Server ----"
-# universe package is for Ubuntu 18.x
+# universe package is for Ubuntu 20.04
 sudo add-apt-repository universe
 # libpng12-0 dependency for wkhtmltopdf
 sudo add-apt-repository "deb http://mirrors.kernel.org/ubuntu/ focal main"
@@ -344,7 +344,7 @@ EOF
   sudo rm /etc/nginx/sites-enabled/default
   sudo service nginx reload
   sudo su root -c "printf 'proxy_mode = True\n' >> /etc/${OE_CONFIG}.conf"
-  echo "Done! The Nginx server is up and running. Configuration can be found at /etc/nginx/sites-available/odoo"
+  echo "Done! The Nginx server is up and running. Configuration can be found at /etc/nginx/sites-available/${OE_USER}.conf"
 else
   echo "Nginx isn't installed due to choice of the user!"
 fi
