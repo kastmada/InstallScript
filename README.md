@@ -12,7 +12,7 @@ If you set the parameter ```INSTALL_NGINX``` to ```True``` you should also confi
 
 ##### 1. Download the script:
 ```
-sudo wget https://raw.githubusercontent.com/kastmada/InstallScript/14.0/odoo_install.sh
+sudo wget https://raw.githubusercontent.com/kastmada/InstallScript/14.0/odoo_install_debian.sh
 ```
 ##### 2. Modify the parameters as you wish.
 There are a few things you can configure, this is the most used list:<br/>
@@ -33,9 +33,9 @@ There are a few things you can configure, this is the most used list:<br/>
 
 #### 3. Make the script executable
 ```
-sudo chmod +x odoo_install.sh
+sudo chmod +x odoo_install_debian.sh
 ```
 ##### 4. Execute the script:
 ```
-sudo ./odoo_install.sh
+sudo ./odoo_install_debian.sh
 ```
