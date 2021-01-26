@@ -3,9 +3,11 @@
 # Script for installing Odoo on Debian 10.0 (could be used for other version too)
 # Authors: Yenthe Van Ginneken, César Cordero Rodríguez
 # Maintainers: Yenthe Van Ginneken, César Cordero Rodríguez
+# Improvements: kastmada
 #-------------------------------------------------------------------------------
 # This script will install Odoo on your Debian 10.0 server. It can install multiple Odoo instances
-# in one Debian because of the different xmlrpc_ports
+# in one Debian because of the different xmlrpc_ports.
+# Improvements includes NGINX multi site config and certbot implementation
 #-------------------------------------------------------------------------------
 # Make a new file:
 # sudo nano odoo-install.sh
@@ -29,7 +31,7 @@ OE_VERSION="14.0"
 # Set this to True if you want to install the Odoo enterprise version!
 IS_ENTERPRISE="False"
 # Set this to True if you want to install Nginx!
-INSTALL_NGINX="False"
+INSTALL_NGINX="True"
 # Set the superadmin password - if GENERATE_RANDOM_PASSWORD is set to "True" we will automatically generate a random password, otherwise we use this one
 OE_SUPERADMIN="admin"
 # Set to "True" to generate a random password, "False" to use the variable in OE_SUPERADMIN
@@ -334,12 +336,12 @@ if [ $INSTALL_NGINX = "True" ]; then
   }
 EOF
 
-  sudo mv ~/odoo /etc/nginx/sites-available/
-  sudo ln -s /etc/nginx/sites-available/odoo /etc/nginx/sites-enabled/odoo
+  sudo mv ~/odoo /etc/nginx/sites-available/${OE_USER}.conf
+  sudo ln -s /etc/nginx/sites-available/${OE_USER}.conf /etc/nginx/sites-enabled/${OE_USER}.conf
   sudo rm /etc/nginx/sites-enabled/default
   sudo service nginx reload
   sudo su root -c "printf 'proxy_mode = True\n' >> /etc/${OE_CONFIG}.conf"
-  echo "Done! The Nginx server is up and running. Configuration can be found at /etc/nginx/sites-available/odoo"
+  echo "Done! The Nginx server is up and running. Configuration can be found at /etc/nginx/sites-available/${OE_USER}.conf"
 else
   echo "Nginx isn't installed due to choice of the user!"
 fi
