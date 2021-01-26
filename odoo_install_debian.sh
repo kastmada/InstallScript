@@ -93,10 +93,10 @@ echo -e "\n---- Install python packages/requirements ----"
 sudo pip3 install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
 
 echo -e "\n---- Installing nodeJS NPM and rtlcss for LTR support ----"
-sudo apt install curl software-properties-common
+sudo apt install curl software-properties-common -y
 curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install nodejs npm -y
-sudo npm install -g rtlcss
+sudo npm install -g rtlcss -y
 
 #--------------------------------------------------
 # Install Wkhtmltopdf if needed
