@@ -59,6 +59,21 @@ sudo apt update
 sudo apt upgrade -y
 
 #--------------------------------------------------
+# Enabling the Uncomplicated Firewall
+#--------------------------------------------------
+echo -e "\n---- Enabling the Uncomplicated Firewall ----"
+sudo apt install ufw
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22 comment 'allow SSH'
+sudo ufw allow http comment 'allow http/80'
+sudo ufw allow https comment 'allow https/443'
+sudo ufw allow $OE_PORT comment 'allow $OE_USER Odoo port'
+sudo ufw allow $LONGPOLLING_PORT comment 'allow $OE_USER longpolling port'
+sudo ufw enable
+sudo ufw status
+
+#--------------------------------------------------
 # Install PostgreSQL Server
 #--------------------------------------------------
 echo -e "\n---- Install PostgreSQL Server ----"
