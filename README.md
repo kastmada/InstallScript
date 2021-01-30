@@ -5,6 +5,8 @@ but goes a bit further and has been improved. This script will also give you the
 This script can be safely used in a multi-odoo code base server because the default Odoo port is changed BEFORE the Odoo is started.
 It is also optimized for Debian 10 and multiple instances under NGINX.
 
+Script also enables the Uncomplicated Firewall rules for selected ports (http, https, ssh, odoo, longpolling). 
+
 ## Installing Nginx
 If you set the parameter ```INSTALL_NGINX``` to ```True``` you should also configure workers. Without workers you will probably get connection loss issues. Look at [the deployment guide from Odoo](https://www.odoo.com/documentation/14.0/setup/deploy.html) on how to configure workers.
 
