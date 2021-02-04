@@ -10,6 +10,26 @@ Script also enables the Uncomplicated Firewall rules for selected ports (http, h
 ## Installing Nginx
 If you set the parameter ```INSTALL_NGINX``` to ```True``` you should also configure workers. Without workers you will probably get connection loss issues. Look at [the deployment guide from Odoo](https://www.odoo.com/documentation/14.0/setup/deploy.html) on how to configure workers.
 
+## Workers configuration sample:
+Server with 4 CPU, 8 Thread
+60 concurrent users
+60 users / 6 = 10 <- theorical number of worker needed
+(4 * 2) + 1 = 9 <- theorical maximal number of worker
+We’ll use 8 workers + 1 for cron. We’ll also use a monitoring system to measure cpu load, and check if it’s between 7 and 7.5 .
+RAM = 9 * ((0.8*150) + (0.2*1024)) ~= 3Go RAM for Odoo
+in ```/etc/odoo.conf```:
+
+```
+[options]
+limit_memory_hard = 1677721600
+limit_memory_soft = 629145600
+limit_request = 8192
+limit_time_cpu = 600
+limit_time_real = 1200
+max_cron_threads = 1
+workers = 8
+```
+
 ## Installation procedure
 
 ##### 1. Download the script:
